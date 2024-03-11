@@ -1,41 +1,21 @@
-name: CI
-
-# Controls when the workflow will run
+name: Build Unreal Engine Project
 on:
-  # Triggers the workflow on push or pull request events but only for the "main" branch
   push:
-    branches: ["main"]
-  pull_request:
-    branches: ["main"]
-
-  # Allows you to run this workflow manually from the Actions tab
-  workflow_dispatch:
-
-# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+    branches:
+      - main  # Укажите основную ветку вашего проекта
 jobs:
-  # This workflow contains a single job called "build"
   build:
-    # The type of runner that the job will run on
-    runs-on: [self-hosted]
-
-    # Steps represent a sequence of tasks that will be executed as part of the job
+    runs-on: [self-hosted]  # Запуск на собственном агенте
     steps:
-      - name: Cook, Stage & Package UE Project
-        uses: OrchidIsle/UE5-Build-Project@latest
-        with:
-          RUNUAT_PATH: 'C:/Program Files/Epic Games/UE_5.3/Engine/Build/BatchFiles/RunUAT.bat'
-          UPROJECT_PATH: ${{ github.workspace }}\MyProject.uproject
-          BUILD_CONFIG: Development
-          PLATFORM: Win64
-          COOK: true
-          STAGE: true
-          PACKAGE: false
-          PAK: false
-          SERVER: false
-          ARCHIVE: false
-          ARCHIVE_PATH: "C:/Archives/MyGame"
-          EDITOR: true
-          ENCRYPT_INI: true
-          RELEASE: "1.0.0"
-          PATCH: "0.9.0"
-          MAPS: "Map1,Map2"
+    - name: Checkout Repository
+      uses: actions/checkout@v2
+    - name: Setup Unreal Engine
+      uses: actions/setup-python@v2
+      with:
+        python-version: '3.x'  # Укажите версию Python, если требуется для настройки Unreal Engine
+    - name: Build Project
+      run: |
+        $UE_PATH/Engine/Build/BatchFiles/RunUAT.bat BuildCookRun -project="$PROJECT_PATH" -noP4 -platform="Win64" -clientconfig="Development" -serverconfig="Development" -cook -allmaps -build -stage -pak -archive
+      env:
+        UE_PATH: ${{ secrets.UE_PATH }}  # Путь к движку Unreal Engine (задайте его в секретах репозитория)
+        PROJECT_PATH: ${{ secrets.PROJECT_PATH }}  # Путь к проекту Unreal Engine (задайте его в секретах репозитория)
