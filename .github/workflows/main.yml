@@ -12,7 +12,6 @@ jobs:
     steps:
    # - name: Checkout Repository
    #   uses: actions/checkout@v2
-      
     - name: Build Project
       shell: pwsh
       run: |
