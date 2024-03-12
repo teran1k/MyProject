@@ -17,4 +17,4 @@ jobs:
       run: |
        [string]$UEPath = "C:\Program Files\Epic Games\UE_5.3"
        [string]$ProjectPath = "C:\test\MyProject"
-       Start-Process -FilePath "$UEPath\Engine\Build\BatchFiles\RunUAT.bat" -ArgumentList BuildCookRun,-Project="$ProjectPath\MyProject.uproject",-TargetPlatforms=Win64,-package="$ProjectPath\PluginBuild"," > BuildPluginLog.txt" -Wait -NoNewWindow -PassThru -configuration=Development
+       Start-Process -FilePath "$UEPath\Engine\Build\BatchFiles\RunUAT.bat" -ArgumentList BuildCookRun,-Project="$ProjectPath\MyProject.uproject",-TargetPlatforms=Win64,-package="$ProjectPath\PluginBuild"," > BuildPluginLog.txt" -Wait -NoNewWindow -PassThru -notools,-configuration=Development+Shipping,
