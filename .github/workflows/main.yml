@@ -10,6 +10,14 @@ jobs:
     #- name: Checkout Repository
     #  uses: actions/checkout@v2
     - name: Build Project
+      shell: powershell
       run: |
-        "C:\Program Files\Epic Games\UE_5.3\Engine\Build\BatchFiles\Build.bat" "FirstPersonMapEditor" "Win64" "Development" "-project=${{ github.workspace }}/MyProject.uproject"
+        $buildScript = "C:\Program Files\Epic Games\UE_5.3\Engine\Build\BatchFiles\Build.bat"
+        $arguments = @(
+          "FirstPersonMapEditor",
+          "Win64",
+          "Development",
+          "-project=${{ github.workspace }}/MyProject.uproject"
+        )
+        & $buildScript $arguments
 
