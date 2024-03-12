@@ -15,7 +15,7 @@ jobs:
       
     - name: Build Project
       run: |
-        $UE_PATH/Engine/Build/BatchFiles/RunUAT.bat BuildCookRun -project="$PROJECT_PATH" -noP4 -platform="Win64" -clientconfig="Development" -serverconfig="Development" -cook -allmaps -build -stage -pak -archive
+       "$UE_PATH\Engine\Build\BatchFiles\RunUAT.bat" BuildCookRun -project="$PROJECT_PATH" -noP4 -platform="Win64" -clientconfig="Development" -serverconfig="Development" -cook -allmaps -build -stage -pak -archive
       env:
         UE_PATH: ${{ secrets.UE_PATH }}  # Путь к движку Unreal Engine (задайте его в секретах репозитория)
         PROJECT_PATH: ${{ secrets.PROJECT_PATH }}  # Путь к проекту Unreal Engine (задайте его в секретах репозитория)
