@@ -10,8 +10,11 @@ jobs:
    # - name: Checkout Repository
     #  uses: actions/checkout@v2
     - name: Build Project
+    - name: Build Project
       run: |
-        "%UE_ROOT%/Engine/Build/BatchFiles/RunUAT.bat" 'BuildCookRun' -project=C:\test\devops-test\DevopsTest.uproject -noP4 -platform=Win64 -clientconfig=Development -build -cook -stage -pak -archive -archivedirectory=$(Build.StagingDirectory)
+        "%UE_ROOT%\Engine\Build\BatchFiles\Build.bat" ^
+        FirstPersonMapEditor Win64 Development ^
+        -project=C:\test\MyProject\MyProject.uproject
     - name: Upload Artifact
       uses: actions/upload-artifact@v2
       with:
