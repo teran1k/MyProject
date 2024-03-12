@@ -7,8 +7,8 @@ jobs:
   build:
     runs-on: [self-hosted]  # Запуск на собственном агенте
     steps:
-    - name: Checkout Repository
-      uses: actions/checkout@v2
+   # - name: Checkout Repository
+    #  uses: actions/checkout@v2
     - name: Build Project
-      run: '"C:\Program Files\Epic Games\UE_5.3\Engine\Build\BatchFiles\Build.bat" FirstPersonMapEditor Win64 Development -project="${{ github.workspace }}\MyProject.uproject"'
+      run: "C:\Program Files\Epic Games\UE_5.3\Engine\Build\BatchFiles\Build.bat" "FirstPersonMapEditor" "Win64" "Development" "-project=${{ github.workspace }}/MyProject.uproject"
 
