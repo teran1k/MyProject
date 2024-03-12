@@ -10,8 +10,9 @@ jobs:
     runs-on: [self-hosted]  # Запуск на собственном агенте
 
     steps:
-   # - name: Checkout Repository
-   #   uses: actions/checkout@v2
+    - name: Checkout Repository
+      uses: actions/checkout@v2
+      
     - name: Build Project
       shell: pwsh
       run: |
