@@ -1,21 +1,23 @@
-name: Build Unreal Engine Project
+
 
 on:
   push:
     branches:
-      - main  # Укажите основную ветку вашего проекта
+      - main
 
 jobs:
   build:
-    runs-on: [self-hosted]  # Запуск на собственном агенте
-
+    runs-on: windows-latest
+    
     steps:
-    - name: Checkout Repository
+    - name: Checkout repository
       uses: actions/checkout@v2
       
-    - name: Build Project
+    - name: Invoke PowerShell Core
       shell: pwsh
       run: |
-       [string]$UEPath = "C:\Program Files\Epic Games\UE_5.3"
-       [string]$ProjectPath = "C:\test\MyProject"
-       Start-Process -FilePath "$UEPath\Engine\Build\BatchFiles\RunUAT.bat" -ArgumentList BuildCookRun,-Project="$ProjectPath\MyProject.uproject",-TargetPlatforms=Win64,-noP4,-build,-stage,-configuration=Development+Shipping,-package="$ProjectPath\PluginBuild"," > BuildPluginLog.txt"
+        # Определение переменной в PowerShell Core
+        $myVariable = "Hello, world!"
+        
+        # Вывод переменной
+        Write-Host $myVariable
