@@ -5,7 +5,7 @@ on:
     branches:
       - main  # Укажите основную ветку вашего проекта
 env:
-    ARCHIVE_PATH: ${{ github.workspace }}/Build
+    ARCHIVE_PATH: ${{ github.workspace }}/build
     ZIP_FILE_PATH: MyBuild.zip
 jobs:
   build:
