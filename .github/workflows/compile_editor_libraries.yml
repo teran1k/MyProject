@@ -5,19 +5,19 @@ on:
     branches:
       - main
 jobs:
-  build_images:
+  compile_editor_libraries:
     runs-on: [self-hosted]  # Запуск на собственном агенте
     steps:
     - name: Checkout Repository
       uses: actions/checkout@v2
       
-    - name: Build Project
+    - name: Compile
       shell: cmd
       env: 
         UE_PATH: 'C:\Program Files\Epic Games\UE_5.3'
         UPROJECT_PATH: ${{ github.workspace }}/MyProject.uproject
         PLATFORMS: Win64
         CONFIGURATION: Development
-        PROJECT: LomEditor
+        PROJECT: MyProject
       run: |
         "%UE_PATH%\Engine\Build\BatchFiles\Build.bat" "%PROJECT%" "%PLATFORMS%" "%CONFIGURATION%" -project="%UPROJECT_PATH%"  
