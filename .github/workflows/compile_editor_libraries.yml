@@ -15,9 +15,9 @@ jobs:
       shell: cmd
       env: 
         UE_PATH: 'C:\Program Files\Epic Games\UE_5.3'
-        UPROJECT_PATH: ${{ github.workspace }}/MyProject.uproject
+        UPROJECT_PATH: ${{ github.workspace }}//DevopsTest.uproject
         PLATFORMS: Win64
         CONFIGURATION: Development
-        PROJECT: MyProject
+        PROJECT: DevopsTest
       run: |
         "%UE_PATH%\Engine\Build\BatchFiles\Build.bat" "%PROJECT%" "%PLATFORMS%" "%CONFIGURATION%" -project="%UPROJECT_PATH%"  
