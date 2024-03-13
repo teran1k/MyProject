@@ -23,11 +23,11 @@ jobs:
         PLATFORMS: Win64
         CONFIGURATION: Development
       run: |
-        "%UE_PATH%\Engine\Build\BatchFiles\RunUAT.bat" BuildCookRun -Project="%UPROJECT_PATH%" -noP4 -TargetPlatforms="%PLATFORMS%" -clientconfig="%CONFIGURATION%" -build -cook -stage -pak -archive -archivedirectory="%ARCHIVE_PATH%"
+        "%UE_PATH%\Engine\Build\BatchFiles\RunUAT.bat" BuildCookRun -Project="%UPROJECT_PATH%" -noP4 -TargetPlatforms="%PLATFORMS%" -clientconfig="%CONFIGURATION%" -build -cook -stage -pak -archive -archivedirectory= "%cd%/%ARCHIVE_PATH%"
     - name: Zip Archive Artifacts
-      run: tar.exe -a -c -f "%ZIP_FILE_PATH%" "%ARCHIVE_PATH%"
+      run: tar.exe -a -c -f "%cd%/%ZIP_FILE_PATH%" "%cd%/%ARCHIVE_PATH%"
     - name: Upload Artifacts
       uses: actions/upload-artifact@v4
       with:
         name: MyProject-${{ github.job }}
-        path: "%ZIP_FILE_PATH%"
+        path: "%cd%/%ZIP_FILE_PATH%"
