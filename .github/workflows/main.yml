@@ -4,7 +4,9 @@ on:
   push:
     branches:
       - main  # Укажите основную ветку вашего проекта
-
+env:
+    ARCHIVE_PATH: ${{ github.workspace }}/build
+    ZIP_FILE_PATH: ${{ github.workspace }}/MyBuild.zip
 jobs:
   build:
     runs-on: [self-hosted]  # Запуск на собственном агенте
@@ -20,6 +22,12 @@ jobs:
         UPROJECT_PATH: ${{ github.workspace }}/MyProject.uproject
         PLATFORMS: Win64
         CONFIGURATION: Development
-        ARCHIVE_PATH: ${{ github.workspace }}/build
       run: |
         "%UE_PATH%\Engine\Build\BatchFiles\RunUAT.bat" BuildCookRun -Project="%UPROJECT_PATH%" -noP4 -TargetPlatforms="%PLATFORMS%" -clientconfig="%CONFIGURATION%" -build -cook -stage -pak -archive -archivedirectory="%ARCHIVE_PATH%"
+    - name: Zip Archive Artifacts
+      run: tar.exe -a -c -f "%ZIP_FILE_PATH%" "%ARCHIVE_PATH%"
+    - name: Upload Artifacts
+      uses: actions/upload-artifact@v4
+      with:
+        name: MyProject-${{ github.job }}
+        path: "%ZIP_FILE_PATH%"
