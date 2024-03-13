@@ -1,9 +1,8 @@
 name: Build Unreal Engine Project
 
 on:
-  push:
-    branches:
-      - main  # Укажите основную ветку вашего проекта
+  schedule:
+  - cron: "10 0 * * *"
 env:
     ARCHIVE_PATH: ${{ github.workspace }}/Mybuild
     ZIP_FILE_PATH: MyBuild.zip
