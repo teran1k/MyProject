@@ -26,7 +26,7 @@ jobs:
         "%UE_PATH%\Engine\Build\BatchFiles\RunUAT.bat" BuildCookRun -Project="%UPROJECT_PATH%" -noP4 -TargetPlatforms="%PLATFORMS%" -clientconfig="%CONFIGURATION%" -build -cook -stage -pak -archive -archivedirectory="%ARCHIVE_PATH%"
     - name: Zip Archive Artifacts
       run: |
-        echo %ZIP_FILE_PATH% %ARCHIVE_PATH%
+        echo "%ZIP_FILE_PATH%" "%ARCHIVE_PATH%"
         dir
         tar.exe -a -c -f "%ZIP_FILE_PATH%" "%ARCHIVE_PATH%"
     - name: Upload Artifacts
