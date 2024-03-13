@@ -5,8 +5,8 @@ on:
     branches:
       - main  # Укажите основную ветку вашего проекта
 env:
-    ARCHIVE_PATH: ${{ github.workspace }}/build
-    ZIP_FILE_PATH: ${{ github.workspace }}/MyBuild.zip
+    ARCHIVE_PATH: Build
+    ZIP_FILE_PATH: MyBuild.zip
 jobs:
   build:
     runs-on: [self-hosted]  # Запуск на собственном агенте
