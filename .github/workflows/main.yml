@@ -1,8 +1,8 @@
 name: Build Unreal Engine Project
 
 on:
-  schedule:
-  - cron: "10 0 * * *"
+#  schedule:
+ # - cron: "10 0 * * *"
 env:
     ARCHIVE_PATH: ${{ github.workspace }}/Mybuild
     ZIP_FILE_PATH: MyBuild.zip
